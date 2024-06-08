@@ -1,0 +1,48 @@
+<div class="card mb-2">
+    <!-- <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6 text-end">
+            </div>
+        </div>
+    </div> -->
+    <div class="card-body">
+        <!-- <h5 class="card-title">Special title treatment</h5> -->
+        <p class="card-text" *ngIf="!edit">
+            <div id="options">
+                <mat-checkbox class=""></mat-checkbox>
+                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>keyboard_arrow_left</mat-icon>
+                </button>
+                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </button>
+                <button class="btnEdit" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button class="btnEdit" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+            </div>
+            <div class="row align-middle">
+                <div class="col-md-1 text-end">
+                    <span class="badge rounded-pill bg-primary">{{no}}.</span>
+                </div>
+                <div class="col-md-11 question">
+                      <div [mathjax]="question?.text ?? ''" *ngIf="!edit"></div>
+                      <question-form *ngIf="edit && question" [question]="question" (success)="edit=false" (cancel)="edit=false"></question-form>
+                </div>
+              </div>
+
+    <!-- </p> -->
+      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+</div>

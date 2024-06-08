@@ -1,0 +1,36 @@
+.card-body{
+    padding: 15px 5px 10px 15px;
+}
+.card-body:hover{
+    // background-color: red;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card-body:hover #options{
+    display: block;
+}
+.question{
+    position:relative;
+    min-height: 50px;
+}
+#options{
+    position:absolute;
+    top: 5px;
+    right: 0;
+    display: none;
+}
+.question:hover{
+    cursor:pointer;
+}
+.question:hover > #options{
+    display:block;
+}
+.rounded-pill{
+    font-size: large;
+}
+mat-checkbox{
+    position:absolute;
+    // top: 0px;
+    // top: 5px;
+    margin-top: 0px!important;
+    padding-top: 0px;
+}

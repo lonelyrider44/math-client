@@ -1,0 +1,45 @@
+
+<form [formGroup]="questionForm" (ngSubmit)="submitForm()" novalidate>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <mat-form-field class="example-full-width col-md-12">
+                    <textarea matInput formControlName="text" [(ngModel)]="question.text" [readonly]="action_delete" [errorStateMatcher]="matcher" >fds</textarea>
+                    <mat-error *ngIf="errors?.text">
+                        {{ errors?.text }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="example-fullwidth col-md-4">
+                    <mat-label>Predmet</mat-label>
+                    <mat-select formControlName="subject_id" [value]="question.subject_id">
+                      <mat-option>None</mat-option>
+                      <mat-option value="option1">Option 1</mat-option>
+                      <mat-option value="option2">Option 2</mat-option>
+                      <mat-option value="option3">Option 3</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-fullwidth col-md-8">
+                    <mat-label>Oblast</mat-label>
+                    <mat-select formControlName="subject_id" [value]="question.subject_id">
+                      <mat-option>None</mat-option>
+                      <mat-option value="option1">Option 1</mat-option>
+                      <mat-option value="option2">Option 2</mat-option>
+                      <mat-option value="option3">Option 3</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button mat-raised-button type="button" class="btn" (click)="goBack()">
+                        Otkaži
+                    </button>
+                    <button mat-raised-button type="button" class="btn btn-danger" (click)="submitForm()">
+                        Potvrdi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

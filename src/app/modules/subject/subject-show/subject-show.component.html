@@ -1,0 +1,17 @@
+<!-- <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+    <a mat-tab-link [routerLink]="'oblasti'" [active]="true">Oblasti</a>
+
+    <a mat-tab-link [routerLink]="'oblasti'" [active]="true">Oblasti</a>
+    <a mat-tab-link [routerLink]="'zadaci'">Zadaci</a>
+    <a mat-tab-link [routerLink]="'testovi'">Testovi</a>
+  </nav> -->
+  
+  
+  <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
+    <a mat-tab-link *ngFor="let link of links" [routerLink]="link.url"
+       (click)="activeLink = link.url"
+       [active]="activeLink == link.url"> {{link.label}} </a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel>
+        <router-outlet></router-outlet>
+    </mat-tab-nav-panel>

@@ -1,0 +1,48 @@
+
+        <form [formGroup]="subjectForm" (ngSubmit)="submitForm()" novalidate>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">subject</h4>
+                            <p class="card-category" *ngIf="action_create">
+                                Novi unos
+                            </p>
+                            <p class="card-category" *ngIf="action_update">
+                                Izmena
+                            </p>
+                            <p class="card-category" *ngIf="action_delete">
+                                Brisanje
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <mat-form-field class="example-full-width col-md-3">
+                                    <input matInput placeholder="Name" formControlName="name" [value]="subject.name" [readonly]="action_delete" [errorStateMatcher]="matcher" />
+                                    <mat-error *ngIf="errors?.name">
+                                        {{ errors?.name }}
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width col-md-3">
+                                    <input matInput placeholder="Level" formControlName="level" [value]="subject.level" [readonly]="action_delete" [errorStateMatcher]="matcher" />
+                                        <mat-error  *ngFor="let item of subjectForm.get('level')?.errors | keyvalue">
+                                            {{item.value}}
+                                          </mat-error>
+                                </mat-form-field>
+                                </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button mat-raised-button type="button" class="btn" (click)="goBack()">
+                                        Otkaži
+                                    </button>
+                                    <button mat-raised-button type="button" class="btn btn-danger" (click)="submitForm()">
+                                        Potvrdi
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
