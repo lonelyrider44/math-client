@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DocumentService } from '../document.service';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormAction } from '../../base/form-action';
 
 @Component({
   selector: 'app-document-form',
@@ -18,6 +19,7 @@ export class DocumentFormComponent extends BaseForm {
   document: Document = newDocument();
   documentForm: FormGroup = documentFormGroup(this.fb);
   new_file:any = null;
+  public questionFormAction: FormAction = FormAction.CREATE;
   
   constructor(
     public override fb: FormBuilder,

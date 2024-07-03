@@ -17,7 +17,7 @@ export class SubjectQuestionsComponent {
     // this.subject = this.route.snapshot.data.subject;
     // this.route.snapshot.parent.data
     this.subject = this.route.snapshot.parent?.data['subject'];
-    console.log(this.subject)
+    // console.log(this.subject)
     // console.log(this.route.snapshot.parent?.data);
   }
 

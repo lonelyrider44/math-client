@@ -15,14 +15,19 @@ export class SubjectShowComponent {
     {url: 'zadaci', label: 'Zadaci'},
     {url: 'testovi', label: 'Testovi'},
   ];
-  activeLink = this.links[0].url;
+  activeLink: any;
+  // activeLink = this.links[0].url;
   constructor(private route:Router, private activatedRoute: ActivatedRoute) {
-    // console.log(activatedRoute.snapshot.url[0].path);
+    // console.log(activatedRoute.snapshot);
+    // console.log(route.url);
+    // console.log()
   }
-  
+  ngOnInit(){
+    this.activeLink = this.links.filter(link => this.route.url.includes(link.url))[0];
+    console.log(this.activeLink);
+
+  }
   ngOnChanges(){
-    
-    console.log(this.route.url);
   }
   toggleBackground() {
     this.background = this.background ? undefined : 'primary';

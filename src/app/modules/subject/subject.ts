@@ -1,9 +1,14 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { Question } from "../question/question";
+import { Chapter } from "../chapter/chapter";
 
 export interface Subject {
     id?: number,
     name: string,
-    level: string
+    level: string,
+
+    chapters?: Chapter[]
+    questions?: Question[]
 }
 
 export function newSubject(): Subject {

@@ -10,13 +10,13 @@
 <div class="row">
     <mat-card class="example-card col-md-3 p-1" *ngFor="let doc of documents">
         <mat-card-header>
-            <mat-card-title><a [routerLink]="'/documents/'+doc.id">{{ doc.name ?? doc.id}}</a></mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <mat-card-title><a [routerLink]="'/documents/'+doc.id">#{{ doc.id}}</a></mat-card-title>
+            <mat-card-subtitle>{{ doc.filename ?? doc.id}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <img [src]="doc.file_url" alt="">
             <!-- <p>This card indeterminates progress bar.</p> -->
-            <p>Zadaci: 5</p>
+            <p>Zadaci: {{doc.questions?.length}}</p>
         </mat-card-content>
         <!-- <mat-card-actions>
             <button mat-button>LIKE</button>

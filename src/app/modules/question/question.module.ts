@@ -13,7 +13,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { QuestionComponent } from './question/question.component';
+import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { FormAction } from '../base/form-action';
 
 
 @NgModule({
@@ -33,11 +36,16 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCardModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    EditorModule,
+    MatMenuModule,
   ],
   exports: [
     QuestionFormComponent,
     QuestionComponent
+  ],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'}
   ]
 })
 export class QuestionModule { }

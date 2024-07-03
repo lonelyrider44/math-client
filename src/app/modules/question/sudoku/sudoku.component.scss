@@ -1,0 +1,30 @@
+.sudoku{
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+ width: 720px;
+ height: 720px;
+//  border: 2px solid black;
+ align-items: center;
+  justify-content: center;
+}
+.sudoku-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sudoku-cell{
+  // flex-direction: column;
+  // border: 1px solid gray;
+  width: 80px;
+  height: 80px;
+  // margin:auto;
+  justify-content: center;
+  align-items: center;        /* for single line flex container */
+  align-content: center;      /* for multi-line flex container */
+  text-align: center;
+  font-size: 1.8rem;
+  
+}
+

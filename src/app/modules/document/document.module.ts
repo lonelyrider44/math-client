@@ -12,10 +12,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { QuestionModule } from '../question/question.module';
+import { DocumentShowComponent } from './document-show/document-show.component';
 
 
 @NgModule({
   declarations: [
+    DocumentShowComponent,
     DocumentFormComponent,
     DocumentIndexComponent
   ],

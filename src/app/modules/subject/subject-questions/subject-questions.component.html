@@ -1,18 +1,3 @@
 
-<question *ngFor="let q of questions; let  i = index" [no]="i+1" [question]="q"/>
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Zadatak</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let q of questions">
-            <td>{{q.id}}</td>
-            <td><div [mathjax]="q.text ??''"></div></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+<!-- <question-form></question-form> -->
+<question *ngFor="let q of questions; let  i = index" [no]="q.id" [question]="q"/>

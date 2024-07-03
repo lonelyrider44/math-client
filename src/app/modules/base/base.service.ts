@@ -24,6 +24,9 @@ export class BaseService<T> implements IBaseService{
       all(): Observable<T[]> {
         return this.httpClient.get<T[]>(`${environment.api_url}/${this.url_model}`);
       }
+      index(params:any):Observable<T[]>{
+        return this.httpClient.post<T[]>(`${environment.api_url}/${this.url_model}`,params);
+      }
       //testirati, zapoceto
       get(params:any): Observable<T[]> {
         return this.httpClient.post<T[]>(`${environment.api_url}/${this.url_model}/get`,params);

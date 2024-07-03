@@ -1,5 +1,5 @@
-import { Component,EventEmitter,Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterExtService } from '../../base/router-ext.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,19 +8,34 @@ import { QuestionService } from '../question.service';
 import { BaseForm } from '../../base/base-form.';
 import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Subject } from '../../subject/subject';
+import { FormAction } from '../../base/form-action';
+import { SubjectService } from '../../subject/subject.service';
+import { Chapter } from '../../chapter/chapter';
+import { ChapterService } from '../../chapter/chapter.service';
+import { Document } from '../../document/document';
 
 @Component({
   selector: 'question-form',
   templateUrl: './question-form.component.html',
   styleUrls: ['./question-form.component.scss']
 })
-export class QuestionFormComponent extends BaseForm{
-  @Input() question: Question = newQuestion();
-  questionForm: FormGroup = questionFormGroup(this.fb);
+export class QuestionFormComponent extends BaseForm {
+  // textFormControl: FormControl;
+  questionForm: FormGroup;
+  //  = questionFormGroup(this.fb);
 
+  @Input() action: FormAction | undefined;
+  @Input() question: Question = newQuestion();
   @Input() clearOnSubmit: boolean = false;
+  @Input() document: Document | null = null;
+  @Input() subject: Subject | null = null;
+
   @Output() success = new EventEmitter<string>();
   @Output() cancel = new EventEmitter<string>();
+
+  public subjects: Subject[] | undefined;
+  public chapters: Chapter[] | undefined;
   // @Input() question_id: any = null;
   constructor(
     public override fb: FormBuilder,
@@ -30,25 +45,44 @@ export class QuestionFormComponent extends BaseForm{
     protected override _snackBar: MatSnackBar,
     public questionService: QuestionService,
     protected _location: Location,
+    protected subjectService: SubjectService,
+    protected chapterService: ChapterService,
   ) {
     super(fb, router, activatedRoute, routerExt, _snackBar);
-    this.form = 
-    this.questionForm = questionFormGroup(this.fb);
+    this.form =
+      this.questionForm
+      = questionFormGroup(this.fb);
     this.service = this.questionService;
+    // this.subjects = this.subjectService.all();
+    // this.textFormControl = new FormControl('')
+    // this.textFormControl = this.questionForm.controls['text'];
     // this.subjectForm = subjectFormGroup(this.fb, this.subject);
   }
 
   ngOnInit(): void {
+    
+    // console.table(this.question);
     // this.loadFromUrl();
-
-    console.log(this.question.text);
-    console.log(this.clearOnSubmit)
+    
+    // console.log(this.question.text);
+    this.form?.controls['document_id'].setValue(this.document?.id);
+    // console.log(this.clearOnSubmit)
+  }
+  ngOnChanges(){
+    this.subjectService.all().subscribe({
+      next: (res) => {
+        this.subjects = res
+        
+        this.subjectChanged({});
+      }
+    })
+    
   }
 
 
   override loadFromUrl() {
     super.loadFromUrl();
-    
+
     // this.activatedRoute.data.subscribe(({ subject }) => {
     //   console.log(subject);
     //   if(subject){
@@ -60,14 +94,33 @@ export class QuestionFormComponent extends BaseForm{
   override get obj() { return this.question };
 
   override submitForm(): void {
-
-    this.service?.update(this.obj?.id, this.form?.value,false).subscribe({
-      next: (res:any) => {  this.success.emit() },
-      error: (error: HttpErrorResponse) => { this.submitFormFailed(this.form, error) }
-    })
-    
+    this.form?.controls['text'].setValue(this.question.text);
+    switch (this.action) {
+      case FormAction.CREATE:
+        this.service?.store(this.form?.value, false).subscribe({
+          next: (res: any) => {this.success.emit() },
+          error: (error: HttpErrorResponse) => { this.submitFormFailed(this.form, error) }
+        })
+        break;
+      case FormAction.EDIT:
+        this.service?.update(this.obj?.id, this.form?.value, false).subscribe({
+          next: (res: any) => { this.success.emit() },
+          error: (error: HttpErrorResponse) => { this.submitFormFailed(this.form, error) }
+        })
+        break;
+      case FormAction.DELETE:
+        break;
+    }
   }
   override goBack(): void {
     this.cancel.emit();
+  }
+
+  subjectChanged($event: any) {
+    //     console.log($event.value);
+    // console.log(this.question.subject_id);
+    this.chapterService.index({ subject_id: this.question.subject_id ?? -1 }).subscribe(res => {
+      this.chapters = res;
+    })
   }
 }

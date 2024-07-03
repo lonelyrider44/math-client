@@ -1,0 +1,12 @@
+<h1>Sudoku</h1>
+<div class="sudoku">
+  <div class="sudoku-row" *ngFor="let i of [0,1,2,3,4,5,6,7,8]">
+    <sudoku-cell 
+    *ngFor="let j of [0,1,2,3,4,5,6,7,8]" [row]="i+1" [col]="j+1"[sudoku]="matrix" [notes]="true" 
+    (sudoku_updated)="updateSudoku($event)" [editNotes]="editNotes"
+    />
+  </div>
+</div>
+
+<button mat-raised-button (click)="newSudoku()">New</button>
+<button mat-raised-button (click)="editNotes=!editNotes">{{ editNotes? 'Edit notes':'Exit notes' }}</button>

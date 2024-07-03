@@ -1,4 +1,4 @@
-<div class="card mb-2">
+<div class="card mb-2" [class.selected]="selected" >
     <!-- <div class="card-header">
         <div class="row">
             <div class="col-md-6">
@@ -7,29 +7,39 @@
             </div>
         </div>
     </div> -->
-    <div class="card-body">
+    <div class="card-body" >
         <!-- <h5 class="card-title">Special title treatment</h5> -->
         <p class="card-text" *ngIf="!edit">
-            <div id="options">
-                <mat-checkbox class=""></mat-checkbox>
-                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
-                    <mat-icon>keyboard_arrow_up</mat-icon>
-                </button>
-                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                </button>
-                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
-                    <mat-icon>keyboard_arrow_left</mat-icon>
-                </button>
-                <button class="" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
+            <div id="options" *ngIf="!edit">
                 <button class="btnEdit" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button class="btnEdit" mat-icon-button color="primary" aria-label="" (click)="edit=true" *ngIf="!!question?.id">
-                    <mat-icon>delete</mat-icon>
-                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="select_question()" *ngIf="!!question?.id">
+                      <mat-icon *ngIf="!selected_questions.includes(question?.id)">check_box_outline_blank</mat-icon>
+                      <mat-icon *ngIf="selected_questions.includes(question?.id)">check_box</mat-icon>
+                      <span>Select</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>keyboard_arrow_up</mat-icon>
+                      <span>Move up</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>keyboard_arrow_down</mat-icon>
+                      <span>Move down</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>keyboard_arrow_right</mat-icon>
+                      <span>Next</span>
+                    </button>
+                    <button mat-menu-item class="btnDelete" [disabled]="!question?.id">
+                        <mat-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                  </mat-menu>
 
             </div>
             <div class="row align-middle">
@@ -37,12 +47,24 @@
                     <span class="badge rounded-pill bg-primary">{{no}}.</span>
                 </div>
                 <div class="col-md-11 question">
-                      <div [mathjax]="question?.text ?? ''" *ngIf="!edit"></div>
-                      <question-form *ngIf="edit && question" [question]="question" (success)="edit=false" (cancel)="edit=false"></question-form>
+                      <div [mathjax]="question?.text ?? ''" *ngIf="!edit" (click)="select_question()"></div>
+                      <question-form *ngIf="edit && question" [question]="question" [action]="editAction" (success)="edit=false" (cancel)="edit=false" />
                 </div>
               </div>
 
     <!-- </p> -->
+    <!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Library</li>
+    </ol>
+  </nav> -->
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">{{question?.subject?.name}}</a></li>
+        <li class="breadcrumb-item" aria-current="page">{{ question?.chapter?.name}}</li>
+      </ol>
+    </nav>
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
 </div>

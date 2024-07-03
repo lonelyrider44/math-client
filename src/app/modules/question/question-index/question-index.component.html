@@ -1,6 +1,7 @@
 
 <div class="container-fluid">
-    <mat-card class="example-card col-md-12 mb-2" *ngFor="let q of questions">
+    <question *ngFor="let q of questions" [question]="q"></question>
+    <!-- <mat-card class="example-card col-md-12 mb-2" *ngFor="let q of questions">
         <mat-card-header>
             <mat-card-title><a [routerLink]="'/questions/'+q.id"># {{ q.id }}</a></mat-card-title>
             
@@ -15,7 +16,7 @@
             <button mat-button>LIKE</button>
             <button mat-button>SHARE</button>
         </mat-card-actions>
-    </mat-card>
+    </mat-card> -->
 </div>
 
 <button mat-fab color="primary" [routerLink]="'/questions/new'" id="btnNewQuestion" aria-label="Example icon button with a delete icon">

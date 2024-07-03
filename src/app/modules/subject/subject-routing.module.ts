@@ -9,15 +9,15 @@ import { SubjectTestsComponent } from './subject-tests/subject-tests.component';
 import { SubjectResolver } from './subject.resolver';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: SubjectIndexComponent, data: { breadcrumb: "Subjects" } },
-  { path: 'unos', pathMatch: 'full', component: SubjectFormComponent, data: { breadcrumb: "New subject" } },
+  { path: '', pathMatch: 'full', component: SubjectIndexComponent },
+  { path: 'unos', pathMatch: 'full', component: SubjectFormComponent, data: { breadcrumb: "New" } },
   { path: ':id', component: SubjectShowComponent, 
-    data: { breadcrumb: "subject" } , resolve: { subject: SubjectResolver},
+    data: { breadcrumb: (data: any) => `${data.subject.name}`  } , resolve: { subject: SubjectResolver},
     children:[
     { path: '', pathMatch: 'full', redirectTo: 'testovi' },
-    { path: 'oblasti', pathMatch: 'full', component: SubjectChaptersComponent, data: { breadcrumb: "subject" } },
-    { path: 'zadaci', pathMatch: 'full', component: SubjectQuestionsComponent, data: { breadcrumb: "subject" } },
-    { path: 'testovi', pathMatch: 'full', component: SubjectTestsComponent, data: { breadcrumb: "subject" } },
+    { path: 'oblasti', pathMatch: 'full', component: SubjectChaptersComponent, data: { breadcrumb: "Chapters" } },
+    { path: 'zadaci', pathMatch: 'full', component: SubjectQuestionsComponent, data: { breadcrumb: "Questions" } },
+    { path: 'testovi', pathMatch: 'full', component: SubjectTestsComponent, data: { breadcrumb: "Tests" } },
 
   ]},
 ];

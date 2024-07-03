@@ -1,10 +1,14 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
+import { Question } from "../question/question";
 
 export interface Document {
     id?: number,
     url?: string,
     file_url?:string,
     name?:string
+    filename?:string,
+
+    questions?: Question[]
 }
 
 export function newDocument(): Document {

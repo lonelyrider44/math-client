@@ -10,7 +10,7 @@ import { Subject } from './subject';
 export class SubjectResolver  {
   constructor(private subjectService: SubjectService){}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Subject> {
-    console.log('subject resolver');
+    // console.log('subject resolver');
     return this.subjectService.find(route.paramMap.get('id'));
     // return of(true);
   }

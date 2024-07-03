@@ -16,6 +16,8 @@ import { MathjaxModule } from 'mathjax-angular';
 import { TestComponent } from './test/test.component';
 import { QuestionModule } from './modules/question/question.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BaseModule } from './modules/base/base.module';
+import { BreadcrumbComponent } from './modules/base/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatListModule,
     MathjaxModule.forRoot(),
     QuestionModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    BaseModule,
+    BreadcrumbComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
