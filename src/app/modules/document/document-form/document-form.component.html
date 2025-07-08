@@ -1,41 +1,47 @@
 
 <form [formGroup]="documentForm" (ngSubmit)="submitForm()" novalidate enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-header-info">
-                    <h4 class="card-title">Document</h4>
-                    <p class="card-category" *ngIf="action_create">
-                        Novi unos
-                    </p>
-                    <p class="card-category" *ngIf="action_update">
-                        Izmena
-                    </p>
-                    <p class="card-category" *ngIf="action_delete">
-                        Brisanje
-                    </p>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="file" placeholder="Document" (change)="onFileSelect($event)" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <button mat-raised-button type="button" class="btn" (click)="goBack()">
-                                Otkaži
-                            </button>
-                            <button mat-raised-button type="button" class="btn btn-danger" (click)="submitForm()">
-                                Potvrdi
-                            </button>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-info">
+          <h4 class="card-title">Document</h4>
+          @if (action_create) {
+            <p class="card-category">
+              Novi unos
+            </p>
+          }
+          @if (action_update) {
+            <p class="card-category">
+              Izmena
+            </p>
+          }
+          @if (action_delete) {
+            <p class="card-category">
+              Brisanje
+            </p>
+          }
         </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <input type="file" placeholder="Document" (change)="onFileSelect($event)" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button mat-raised-button type="button" class="btn" (click)="goBack()">
+                Otkaži
+              </button>
+              <button mat-raised-button type="button" class="btn btn-danger" (click)="submitForm()">
+                Potvrdi
+              </button>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </form>
 
 <question-form [clearOnSubmit]="true" [document]="document" [action]="questionFormAction"/>

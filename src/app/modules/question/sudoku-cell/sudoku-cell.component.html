@@ -1,9 +1,17 @@
 <div class="sudoku-cell" [attr.row]="this.row" [attr.col]="this.col">
-      
-    <div class="sudoku-cell-note" *ngIf="!value && notes">
-        <div class="sudoku-cell-note-cell" *ngFor="let c of candidates">
-            <span *ngIf="c.candidate" (click)="updateSudoku(c.value)">{{c.value}}</span>
+
+  @if (!value && notes) {
+    <div class="sudoku-cell-note">
+      @for (c of candidates; track c) {
+        <div class="sudoku-cell-note-cell">
+          @if (c.candidate) {
+            <span (click)="updateSudoku(c.value)">{{c.value}}</span>
+          }
         </div>
+      }
     </div>
-    <span *ngIf="!!value">{{value}}</span>
+  }
+  @if (!!value) {
+    <span>{{value}}</span>
+  }
 </div>

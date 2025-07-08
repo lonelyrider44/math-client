@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component,Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'sudoku-cell',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './sudoku-cell.component.html',
     styleUrl: './sudoku-cell.component.scss'
 })

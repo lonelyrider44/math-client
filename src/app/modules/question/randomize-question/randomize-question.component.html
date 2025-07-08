@@ -1,44 +1,46 @@
 <!-- <div [mathjax]="question?.text ??''"></div> -->
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-7">
-            <div [mathjax]="question?.pattern??''"></div>
-        </div>
-        <div class="col-md-5">
-            <div class="row" *ngFor="let p of pattern_data ?? []">
-                <div class="col-md-3">
-                    <label for="">{{p.name}}</label>
-                    <!-- <input type="text" class="form-control" readonly value=""> -->
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" [(ngModel)]="p.value" (change)="updatePattern(p.name, $event)">
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" >
-                </div>
-                <div class="col-md-3">
-                    <input type="text" class="form-control" >
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <button class="btn btn-primary" (click)="updatePatternData()">Submit</button>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-7">
+      <div [mathjax]="question?.pattern??''"></div>
     </div>
-    <div class="row">
-        <div class="col-md-12 position-relative">
-            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="generate()" type="button" class="position-absolute top-0 end-0">
-                <mat-icon>refresh</mat-icon>
-            </button>
-              <div [mathjax]="question_pattern"></div>
+    <div class="col-md-5">
+      @for (p of pattern_data ?? []; track p) {
+        <div class="row">
+          <div class="col-md-3">
+            <label for="">{{p.name}}</label>
+            <!-- <input type="text" class="form-control" readonly value=""> -->
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" [(ngModel)]="p.value" (change)="updatePattern(p.name, $event)">
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" >
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" >
+          </div>
         </div>
-        <div class="col-md-12 position-relative">
-            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="save()" type="button" class="position-absolute top-0 end-0">
-                <mat-icon>add</mat-icon>
-            </button>
+      }
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary" (click)="updatePatternData()">Submit</button>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 position-relative">
+      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="generate()" type="button" class="position-absolute top-0 end-0">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <div [mathjax]="question_pattern"></div>
+    </div>
+    <div class="col-md-12 position-relative">
+      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="save()" type="button" class="position-absolute top-0 end-0">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

@@ -10,7 +10,7 @@ import { SubjectService } from '../../subject/subject.service';
 import { ChapterService } from '../../chapter/chapter.service';
 import { MathObject, mathObjectFormGroup, newMathObject } from '../math-object';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CommonModule, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
@@ -19,16 +19,16 @@ import { MathObjectService } from '../math-object.service';
 
 @Component({
     selector: 'app-math-object-form',
+    standalone: true,
     imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormField,
-        MatInputModule,
-        MatLabel,
-        MatIcon,
-        MatOptionModule
-    ],
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInputModule,
+    MatLabel,
+    MatIcon,
+    MatOptionModule
+],
     templateUrl: './math-object-form.component.html',
     styleUrl: './math-object-form.component.scss'
 })

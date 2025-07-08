@@ -1,3 +1,5 @@
 
 <!-- <question-form></question-form> -->
-<question *ngFor="let q of questions; let  i = index" [no]="q.id" [question]="q"/>
+@for (q of questions; track q; let i = $index) {
+  <question [no]="q.id" [question]="q"/>
+}

@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { SudokuCellComponent } from '../sudoku-cell/sudoku-cell.component';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-sudoku',
-    imports: [CommonModule, SudokuCellComponent, MatButtonModule],
+    imports: [SudokuCellComponent, MatButtonModule],
     templateUrl: './sudoku.component.html',
     styleUrl: './sudoku.component.scss'
 })

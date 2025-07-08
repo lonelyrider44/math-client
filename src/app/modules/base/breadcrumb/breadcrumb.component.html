@@ -1,9 +1,17 @@
-<nav *ngIf="(breadcrumbs$ | async)?.length">
+@if ((breadcrumbs$ | async)?.length) {
+  <nav>
     <ol class="breadcrumb">
-      <li *ngFor="let breadcrumb of breadcrumbs$ | async; let last = last"
+      @for (breadcrumb of breadcrumbs$ | async; track breadcrumb; let last = $last) {
+        <li
           [ngClass]="{'breadcrumb-item': true, 'active': last}">
-        <a *ngIf="!last" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
-        <span *ngIf="last">{{ breadcrumb.label }}</span>
-      </li>
+          @if (!last) {
+            <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          }
+          @if (last) {
+            <span>{{ breadcrumb.label }}</span>
+          }
+        </li>
+      }
     </ol>
   </nav>
+}

@@ -1,21 +1,27 @@
 <div class="container">
-    <p><mat-slide-toggle #random>Generator!</mat-slide-toggle></p>
-    <div class="row" *ngIf="random.checked">
-        <div [mathjax]="kvadar.toString()"></div>
-        <button (click)="randomKvadar()">refresh</button>
-    </div>
-    <div class="row" *ngIf="random.checked">
-        <div [mathjax]="kocka.toString()"></div>
-        <button (click)="randomKocka()">refresh</button>
-    </div>
+  <p><mat-slide-toggle #random>Generator!</mat-slide-toggle></p>
+  @if (random.checked) {
     <div class="row">
-        <div class="col-md-8">
-            <ol class="list-group list-group-numbered">
-                <!-- <li class="list-group-item mb-2" >
-                    <div class="d-zadatak px-4" [mathjax]="qq"></div>
-                </li> -->
-                <question *ngFor="let qq of q; let  i = index" [no]="i+1" [question]="qq"/>
-              </ol>
-        </div>
+      <div [mathjax]="kvadar.toString()"></div>
+      <button (click)="randomKvadar()">refresh</button>
     </div>
+  }
+  @if (random.checked) {
+    <div class="row">
+      <div [mathjax]="kocka.toString()"></div>
+      <button (click)="randomKocka()">refresh</button>
+    </div>
+  }
+  <div class="row">
+    <div class="col-md-8">
+      <ol class="list-group list-group-numbered">
+        <!-- <li class="list-group-item mb-2" >
+        <div class="d-zadatak px-4" [mathjax]="qq"></div>
+      </li> -->
+      @for (qq of q; track qq; let i = $index) {
+        <question [no]="i+1" [question]="qq"/>
+      }
+    </ol>
+  </div>
+</div>
 </div>

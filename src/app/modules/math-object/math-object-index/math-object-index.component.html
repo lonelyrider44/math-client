@@ -1,46 +1,53 @@
-<mat-card class="example-card col-md-3 m-1 p-3" *ngFor="let mo of mathObjects">
+@for (mo of mathObjects; track mo) {
+  <mat-card class="example-card col-md-3 m-1 p-3">
     <mat-card-header>
-        <mat-card-title><a [routerLink]="'/subjects/'+mo.id">{{ mo.name }}</a></mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      <mat-card-title><a [routerLink]="'/subjects/'+mo.id">{{ mo.name }}</a></mat-card-title>
+      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
     </mat-card-header>
     <mat-card-content>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        <div *ngFor="let item of mo.inputs" [mathjax]="item.latex_expr"></div>
-                    <!-- <p>Chapters: {{subject.chapters?.length}}</p> -->
-                </div>
-                <div class="col-md-6">
-                    <p *ngFor="let item of mo.outputs">
-                        {{item.name}} = {{item.expr}}
-                    </p>
-                    <!-- <p>Questions: {{subject.questions?.length}}</p> -->
-                </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              @for (item of mo.inputs; track item) {
+                <div [mathjax]="item.latex_expr"></div>
+              }
+              <!-- <p>Chapters: {{subject.chapters?.length}}</p> -->
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        <!-- <div *ngFor="let item of mo.input_values" [mathjax]="item.latex_expr"></div> -->
-                    <!-- <p>Chapters: {{subject.chapters?.length}}</p> -->
-                </div>
-                <div class="col-md-6">
-                    <p *ngFor="let item of mo.outputs">
-                        {{item.name}} = {{item.expr}}
-                    </p>
-                    <!-- <p>Questions: {{subject.questions?.length}}</p> -->
-                </div>
+            <div class="col-md-6">
+              @for (item of mo.outputs; track item) {
+                <p>
+                  {{item.name}} = {{item.expr}}
+                </p>
+              }
+              <!-- <p>Questions: {{subject.questions?.length}}</p> -->
             </div>
-        </div>
-        <!-- <p>This card indeterminates progress bar.</p> -->
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button (click)="random(mo)">LIKE</button>
-        <button mat-button>SHARE</button>
-    </mat-card-actions>
-</mat-card>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <!-- <div *ngFor="let item of mo.input_values" [mathjax]="item.latex_expr"></div> -->
+                <!-- <p>Chapters: {{subject.chapters?.length}}</p> -->
+              </div>
+              <div class="col-md-6">
+                @for (item of mo.outputs; track item) {
+                  <p>
+                    {{item.name}} = {{item.expr}}
+                  </p>
+                }
+                <!-- <p>Questions: {{subject.questions?.length}}</p> -->
+              </div>
+            </div>
+          </div>
+          <!-- <p>This card indeterminates progress bar.</p> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="random(mo)">LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    }
 
-<button mat-fab color="primary" [routerLink]="'/math-objects/new'" id="btnAddMathObject" aria-label="Example icon button with a delete icon">
-    <mat-icon>add</mat-icon>
-</button>
+    <button mat-fab color="primary" [routerLink]="'/math-objects/new'" id="btnAddMathObject" aria-label="Example icon button with a delete icon">
+      <mat-icon>add</mat-icon>
+    </button>
