@@ -9,18 +9,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MathjaxModule } from 'mathjax-angular';
 
 @Component({
-  selector: 'app-math-object-index',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MathjaxModule
-  ],
-  templateUrl: './math-object-index.component.html',
-  styleUrl: './math-object-index.component.scss'
+    selector: 'app-math-object-index',
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatCardModule,
+        MatIconModule,
+        MatButtonModule,
+        MathjaxModule
+    ],
+    templateUrl: './math-object-index.component.html',
+    styleUrl: './math-object-index.component.scss'
 })
 export class MathObjectIndexComponent {
 

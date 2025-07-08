@@ -16,9 +16,10 @@ import { ChapterService } from '../../chapter/chapter.service';
 import { Document } from '../../document/document';
 
 @Component({
-  selector: 'question-form',
-  templateUrl: './question-form.component.html',
-  styleUrls: ['./question-form.component.scss']
+    selector: 'question-form',
+    templateUrl: './question-form.component.html',
+    styleUrls: ['./question-form.component.scss'],
+    standalone: false
 })
 export class QuestionFormComponent extends BaseForm {
   // textFormControl: FormControl;

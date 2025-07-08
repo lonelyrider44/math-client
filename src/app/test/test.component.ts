@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Question } from '../modules/question/question';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+    selector: 'app-test',
+    templateUrl: './test.component.html',
+    styleUrls: ['./test.component.scss'],
+    standalone: false
 })
 export class TestComponent {
 

@@ -9,9 +9,10 @@ import { SubjectService } from '../subject.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-subject-form',
-  templateUrl: './subject-form.component.html',
-  styleUrls: ['./subject-form.component.scss']
+    selector: 'app-subject-form',
+    templateUrl: './subject-form.component.html',
+    styleUrls: ['./subject-form.component.scss'],
+    standalone: false
 })
 export class SubjectFormComponent extends BaseForm {
   subject: Subject = newSubject();

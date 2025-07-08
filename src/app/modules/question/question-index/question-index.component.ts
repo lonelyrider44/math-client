@@ -3,9 +3,10 @@ import { Question } from '../question';
 import { QuestionService } from '../question.service';
 
 @Component({
-  selector: 'app-question-index',
-  templateUrl: './question-index.component.html',
-  styleUrls: ['./question-index.component.scss']
+    selector: 'app-question-index',
+    templateUrl: './question-index.component.html',
+    styleUrls: ['./question-index.component.scss'],
+    standalone: false
 })
 export class QuestionIndexComponent {
 

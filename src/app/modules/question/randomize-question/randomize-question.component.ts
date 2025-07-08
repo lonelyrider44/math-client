@@ -3,11 +3,12 @@ import { Question, copyQuestion } from '../question';
 import { QuestionService } from '../question.service';
 
 @Component({
-  selector: 'randomize-question',
-  // standalone: true,
-  // imports: [],
-  templateUrl: './randomize-question.component.html',
-  styleUrl: './randomize-question.component.scss'
+    selector: 'randomize-question',
+    // standalone: true,
+    // imports: [],
+    templateUrl: './randomize-question.component.html',
+    styleUrl: './randomize-question.component.scss',
+    standalone: false
 })
 export class RandomizeQuestionComponent {
   @Input() question: Question|undefined = undefined;

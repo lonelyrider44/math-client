@@ -9,11 +9,12 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
-  selector: 'app-document-show',
-  // standalone: true,
-  // imports: [],
-  templateUrl: './document-show.component.html',
-  styleUrl: './document-show.component.scss'
+    selector: 'app-document-show',
+    // standalone: true,
+    // imports: [],
+    templateUrl: './document-show.component.html',
+    styleUrl: './document-show.component.scss',
+    standalone: false
 })
 export class DocumentShowComponent {
   public document: Document | null = null;

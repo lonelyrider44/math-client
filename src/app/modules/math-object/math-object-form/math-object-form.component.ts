@@ -18,20 +18,19 @@ import { MatIcon } from '@angular/material/icon';
 import { MathObjectService } from '../math-object.service';
 
 @Component({
-  selector: 'app-math-object-form',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormField,
-    MatInputModule,
-    MatLabel,
-    MatIcon,
-    MatOptionModule
-  ],
-  templateUrl: './math-object-form.component.html',
-  styleUrl: './math-object-form.component.scss'
+    selector: 'app-math-object-form',
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormField,
+        MatInputModule,
+        MatLabel,
+        MatIcon,
+        MatOptionModule
+    ],
+    templateUrl: './math-object-form.component.html',
+    styleUrl: './math-object-form.component.scss'
 })
 export class MathObjectFormComponent extends BaseForm{
   // textFormControl: FormControl;

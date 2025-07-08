@@ -11,9 +11,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormAction } from '../../base/form-action';
 
 @Component({
-  selector: 'app-document-form',
-  templateUrl: './document-form.component.html',
-  styleUrls: ['./document-form.component.scss']
+    selector: 'app-document-form',
+    templateUrl: './document-form.component.html',
+    styleUrls: ['./document-form.component.scss'],
+    standalone: false
 })
 export class DocumentFormComponent extends BaseForm {
   document: Document = newDocument();

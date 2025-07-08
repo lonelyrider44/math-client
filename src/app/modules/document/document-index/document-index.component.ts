@@ -6,9 +6,10 @@ import { Subject } from '../../subject/subject';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-document-index',
-  templateUrl: './document-index.component.html',
-  styleUrls: ['./document-index.component.scss']
+    selector: 'app-document-index',
+    templateUrl: './document-index.component.html',
+    styleUrls: ['./document-index.component.scss'],
+    standalone: false
 })
 export class DocumentIndexComponent {
   documents:Document[] = [];

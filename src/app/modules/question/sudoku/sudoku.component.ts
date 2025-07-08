@@ -4,11 +4,10 @@ import { SudokuCellComponent } from '../sudoku-cell/sudoku-cell.component';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-sudoku',
-  standalone: true,
-  imports: [CommonModule, SudokuCellComponent, MatButtonModule],
-  templateUrl: './sudoku.component.html',
-  styleUrl: './sudoku.component.scss'
+    selector: 'app-sudoku',
+    imports: [CommonModule, SudokuCellComponent, MatButtonModule],
+    templateUrl: './sudoku.component.html',
+    styleUrl: './sudoku.component.scss'
 })
 export class SudokuComponent {
   public matrix =  this.resetSudoku();

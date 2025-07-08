@@ -3,9 +3,10 @@ import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-subject-show',
-  templateUrl: './subject-show.component.html',
-  styleUrls: ['./subject-show.component.scss']
+    selector: 'app-subject-show',
+    templateUrl: './subject-show.component.html',
+    styleUrls: ['./subject-show.component.scss'],
+    standalone: false
 })
 export class SubjectShowComponent {
   background: ThemePalette = undefined;

@@ -9,11 +9,12 @@ import { SubjectService } from '../../subject/subject.service';
 import { ChapterService } from '../../chapter/chapter.service';
 
 @Component({
-  selector: 'app-selected-questions',
-  // standalone: true,
-  // imports: [QuestionModule],
-  templateUrl: './selected-questions.component.html',
-  styleUrl: './selected-questions.component.scss'
+    selector: 'app-selected-questions',
+    // standalone: true,
+    // imports: [QuestionModule],
+    templateUrl: './selected-questions.component.html',
+    styleUrl: './selected-questions.component.scss',
+    standalone: false
 })
 export class SelectedQuestionsComponent {
     questions: Question[] = [];

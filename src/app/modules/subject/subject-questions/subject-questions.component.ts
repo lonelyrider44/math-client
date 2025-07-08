@@ -5,9 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from '../subject';
 
 @Component({
-  selector: 'app-subject-questions',
-  templateUrl: './subject-questions.component.html',
-  styleUrls: ['./subject-questions.component.scss']
+    selector: 'app-subject-questions',
+    templateUrl: './subject-questions.component.html',
+    styleUrls: ['./subject-questions.component.scss'],
+    standalone: false
 })
 export class SubjectQuestionsComponent {
   public subject: Subject;

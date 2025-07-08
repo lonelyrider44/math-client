@@ -4,9 +4,10 @@ import { SubjectService } from '../subject.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-subject-index',
-  templateUrl: './subject-index.component.html',
-  styleUrls: ['./subject-index.component.scss']
+    selector: 'app-subject-index',
+    templateUrl: './subject-index.component.html',
+    styleUrls: ['./subject-index.component.scss'],
+    standalone: false
 })
 export class SubjectIndexComponent {
   subjects: Subject[] = [];

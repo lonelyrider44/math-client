@@ -6,9 +6,10 @@ import { Title } from '@angular/platform-browser';
 import { QuestionService } from 'src/app/modules/question/question.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './app-nav.component.html',
-  styleUrls: ['./app-nav.component.scss']
+    selector: 'app-nav',
+    templateUrl: './app-nav.component.html',
+    styleUrls: ['./app-nav.component.scss'],
+    standalone: false
 })
 export class AppNavComponent {
 

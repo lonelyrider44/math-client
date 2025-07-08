@@ -4,9 +4,10 @@ import { QuestionService } from '../question.service';
 import { FormAction } from '../../base/form-action';
 
 @Component({
-  selector: 'question',
-  templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+    selector: 'question',
+    templateUrl: './question.component.html',
+    styleUrls: ['./question.component.scss'],
+    standalone: false
 })
 export class QuestionComponent {
 

@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'breadcrumbs',
-  standalone: true,
-  imports: [CommonModule,RouterModule],
-  templateUrl: './breadcrumb.component.html',
-  styleUrl: './breadcrumb.component.scss'
+    selector: 'breadcrumbs',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './breadcrumb.component.html',
+    styleUrl: './breadcrumb.component.scss'
 })
 export class BreadcrumbComponent {
   breadcrumbs$ = this.breadcrumbService.breadcrumbs$;

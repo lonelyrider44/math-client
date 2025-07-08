@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component,Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'sudoku-cell',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './sudoku-cell.component.html',
-  styleUrl: './sudoku-cell.component.scss'
+    selector: 'sudoku-cell',
+    imports: [CommonModule],
+    templateUrl: './sudoku-cell.component.html',
+    styleUrl: './sudoku-cell.component.scss'
 })
 export class SudokuCellComponent {
   @Input() row:number = 0;
