@@ -5,14 +5,59 @@
                 <mat-card-header>
                     <mat-card-title>#{{ document?.id}}</mat-card-title>
                     <mat-card-subtitle>{{ document?.filename}}</mat-card-subtitle>
+
+                    <div class="header-actions">
+                        <button mat-icon-button *ngIf="!!document?.previous" routerLink="/documents/{{document?.previous?.id}}">
+                          <mat-icon>skip_previous</mat-icon>
+                        </button>
+                        <button mat-icon-button *ngIf="!!document?.next" routerLink="/documents/{{document?.next?.id}}">
+                          <mat-icon>skip_next</mat-icon>
+                        </button>
+                        <!-- <button mat-icon-button>
+                          <mat-icon>delete</mat-icon>
+                        </button> -->
+                      </div>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="row">
+                        <mat-form-field class="example-chip-list col-md-10">
+                            <mat-label>Tags</mat-label>
+                            <mat-chip-grid #chipGrid aria-label="Enter fruits">
+                                <mat-chip-row *ngFor="let tag of document?.tags"
+                                  
+                                  [editable]="true"
+                                  [aria-description]="'press enter to edit ' + tag"
+                                >
+                                  {{tag}}
+                                  <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                                    <mat-icon>cancel</mat-icon>
+                                  </button>
+                                </mat-chip-row>
+                              <input
+                                placeholder="New tag..."
+                                [matChipInputFor]="chipGrid"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="addOnBlur"
+                                (matChipInputTokenEnd)="add($event)"
+                              />
+                            </mat-chip-grid>
+                          </mat-form-field>
+                          <div class="col-md-2">
+                            <mat-form-field >
+                                <mat-label>Tipk dokumenta</mat-label>
+                                <mat-select (valueChange)="updateTipDokumenta($event)" [ngModel]="document?.document_type_id">
+                                    <mat-option *ngFor="let dt of documentTypes" [value]="dt.id" >{{dt.name}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
-                            <img [src]="document?.file_url" alt="">
+                            <img [src]="document?.file_url" alt="" class="w-100">
+                            <textarea>{{document?.latex}}</textarea>
                         </div>
                         <div class="col-md-6">
-                            <button mat-fab color="primary"
+                            <button mat-fab color="primary mb-3" 
                                 aria-label="Example icon button with a delete icon" (click)="newQuestion=true">
                                 <mat-icon>add</mat-icon>
                                 </button>
@@ -20,6 +65,9 @@
                             <question *ngFor="let question of document?.questions" [question]="question" [no]="question.id"/>
                         </div>
 
+                    </div>
+                    <div class="row">
+                        
                     </div>
                     <!-- <p>This card indeterminates progress bar.</p> -->
                     <p>Zadaci: {{document?.questions?.length}}</p>
@@ -31,4 +79,5 @@
             </mat-card>
 
         </div>
+        
     </div>

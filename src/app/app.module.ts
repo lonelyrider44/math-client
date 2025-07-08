@@ -18,6 +18,10 @@ import { QuestionModule } from './modules/question/question.module';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BaseModule } from './modules/base/base.module';
 import { BreadcrumbComponent } from './modules/base/breadcrumb/breadcrumb.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthModule } from './modules/auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -31,16 +35,19 @@ import { BreadcrumbComponent } from './modules/base/breadcrumb/breadcrumb.compon
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
+    MatFormFieldModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     MathjaxModule.forRoot(),
     QuestionModule,
     MatSlideToggleModule,
     BaseModule,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

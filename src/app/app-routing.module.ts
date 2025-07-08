@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TestComponent } from './test/test.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './modules/auth/login/login.component';
 
 const routes: Routes = [
   {
@@ -29,8 +31,25 @@ const routes: Routes = [
     }],
   },
   {
+    path: 'math-objects',
+    children: [{
+      data: { breadcrumb: "Objects" },
+      path: '',
+      loadChildren: () => import('./modules/math-object/math-object.module').then(m => m.MathObjectModule)
+    }],
+  },
+  {
+    path: '', 
+    pathMatch: 'full',
+    component: DashboardComponent
+  },
+  {
     path: 'test',
     component: TestComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

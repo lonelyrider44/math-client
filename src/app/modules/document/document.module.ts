@@ -13,6 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { QuestionModule } from '../question/question.module';
 import { DocumentShowComponent } from './document-show/document-show.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { DocumentShowComponent } from './document-show/document-show.component';
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
-    QuestionModule
+    QuestionModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatExpansionModule
   ]
 })
 export class DocumentModule { }

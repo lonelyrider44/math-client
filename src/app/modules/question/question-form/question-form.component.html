@@ -1,57 +1,109 @@
 
 <form [formGroup]="questionForm" (ngSubmit)="submitForm()" novalidate>
-    <div class="row">
-        <div class="col-md-12">
-            <div [mathjax]="tinymce.editor?.getContent({format:'html'}) ?? (tinymce.initialValue ?? '')" [(ngModel)]="question.text"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p><i>Rešenje:</i></p>
-                <div [mathjax]="tmcAnswer.editor?.getContent({format:'html'}) ?? (tinymce.initialValue ?? '')" [(ngModel)]="question.answer"></div>
+
+    <mat-tab-group>
+        <mat-tab label="Question">
+            <ng-template matTabContent>
+                <div class="row">
+                    <div class="col-md-12">
+                        <editor #tinymce 
+                        [init]="tinyMceInit"  
+                        [initialValue]="question.text" 
+                        name="text" ngDefaultControl
+                        [(ngModel)]="question.text" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
+                    </editor>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div [mathjax]="tinymce.editor?.getContent({format:'html'}) ?? (tinymce.initialValue ?? '')" [(ngModel)]="question.text"></div>
+                </div>
+            </div>
+              </ng-template> 
+            <div class="container-fluid">
+            </div>
+        </mat-tab>
+        <mat-tab label="Answer">
+            <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i>Rešenje:</i></p>
+                    <div [mathjax]="tmcAnswer.editor?.getContent({format:'html'}) ?? (tmcAnswer.initialValue ?? '')" [(ngModel)]="question.answer"></div>
+                </div>
+            </div>
+            <div class="row">
+        
+                <div class="col-md-12">
+                    <editor #tmcAnswer
+                    [init]="{ height: '150px', menubar: false, plugins: 'lists advlist link image table code help wordcount', toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist',advlist_number_styles: 'default,lower-alpha,lower-roman,upper-alpha,upper-roman',
+                    advlist_bullet_styles: 'default,circle,square'}"  
+                    [initialValue]="question.answer" 
+                    name="text" ngDefaultControl
+                    [(ngModel)]="question.answer" 
+                    [ngModelOptions]="{standalone: true}"
+                     >
+                    </editor>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-3">
-        <mat-form-field class="example-fullwidth col-md-4">
-            <mat-label>Predmet</mat-label>
-            <mat-select formControlName="subject_id" [(ngModel)]="question.subject_id" (selectionChange)="subjectChanged($event)">
-              <mat-option>None</mat-option>
-              <mat-option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</mat-option>
-              <!-- <mat-option value="option1">Option 1</mat-option>
-                <mat-option value="option2">Option 2</mat-option>
-                <mat-option value="option3">Option 3</mat-option> -->
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field class="example-fullwidth col-md-4">
-            <mat-label>Oblast</mat-label>
-            <mat-select formControlName="chapter_id" [(ngModel)]="question.chapter_id"  >
-                <mat-option>None</mat-option>
-                <mat-option *ngFor="let chapter of chapters" [value]="chapter.id">{{chapter.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <editor #tinymce 
-            [init]="{ height: '200px', menubar: false, plugins: 'lists link image table code help wordcount', toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist' }"  
-            [initialValue]="question.text" 
-            name="text" ngDefaultControl
-            [(ngModel)]="question.text" 
-            [ngModelOptions]="{standalone: true}"
-             >
-            </editor>
-        </div>
-        <div class="col-md-6">
-            <editor #tmcAnswer
-            [init]="{ height: '150px', menubar: false, plugins: 'lists link image table code help wordcount', toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist' }"  
-            [initialValue]="question.answer" 
-            name="text" ngDefaultControl
-            [(ngModel)]="question.answer" 
-            [ngModelOptions]="{standalone: true}"
-             >
-            </editor>
-        </div>
-    </div>
+        </mat-tab>
+        <mat-tab label="Reference">
+            <div class="container-fluid">
+                <div class="row mt-3">
+                    <mat-form-field class="example-fullwidth col-md-4">
+                        <mat-label>Predmet</mat-label>
+                        <mat-select formControlName="subject_id" [(ngModel)]="question.subject_id" (selectionChange)="subjectChanged($event)">
+                          <mat-option>None</mat-option>
+                          <mat-option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</mat-option>
+                          <!-- <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                            <mat-option value="option3">Option 3</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="example-fullwidth col-md-4">
+                        <mat-label>Oblast</mat-label>
+                        <mat-select formControlName="chapter_id" [(ngModel)]="question.chapter_id"  >
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let chapter of chapters" [value]="chapter.id">{{chapter.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Random">
+            <div class="container-fluid">
+                <div class="row mt-3">
+                    <randomize-question [question]="question"/>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Notes">
+            <div class="container-fluid">
+                <div class="row mt-3">
+                    <mat-form-field class="example-fullwidth col-md-4">
+                        <mat-label>Predmet</mat-label>
+                        <mat-select formControlName="subject_id" [(ngModel)]="question.subject_id" (selectionChange)="subjectChanged($event)">
+                          <mat-option>None</mat-option>
+                          <mat-option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</mat-option>
+                          <!-- <mat-option value="option1">Option 1</mat-option>
+                            <mat-option value="option2">Option 2</mat-option>
+                            <mat-option value="option3">Option 3</mat-option> -->
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="example-fullwidth col-md-4">
+                        <mat-label>Oblast</mat-label>
+                        <mat-select formControlName="chapter_id" [(ngModel)]="question.chapter_id"  >
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let chapter of chapters" [value]="chapter.id">{{chapter.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+    
     <div class="row mt-2">
         <div class="col-md-12 text-center">
             <button mat-raised-button type="button" class="btn" (click)="goBack()">

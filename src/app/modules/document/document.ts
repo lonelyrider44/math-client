@@ -7,7 +7,14 @@ export interface Document {
     file_url?:string,
     name?:string
     filename?:string,
+    type?: string,
+    latex?: string,
+    tags?: string[],
+    document_type_id ?: number,
+    previous?: Document,
+    next?:Document,
 
+    document_type?: DocumentType,
     questions?: Question[]
 }
 

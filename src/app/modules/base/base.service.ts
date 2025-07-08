@@ -27,6 +27,9 @@ export class BaseService<T> implements IBaseService{
       index(params:any):Observable<T[]>{
         return this.httpClient.post<T[]>(`${environment.api_url}/${this.url_model}`,params);
       }
+      search(params:any):Observable<T[]>{
+        return this.httpClient.post<T[]>(`${environment.api_url}/${this.url_model}`,params);
+      }
       //testirati, zapoceto
       get(params:any): Observable<T[]> {
         return this.httpClient.post<T[]>(`${environment.api_url}/${this.url_model}/get`,params);
@@ -43,6 +46,10 @@ export class BaseService<T> implements IBaseService{
       }
       update(id:any, data:any, stringify: boolean = true): Observable<T> {
         return this.httpClient.put<T>(`${environment.api_url}/${this.url_model}/${id}`, stringify?JSON.stringify(data):data, this.httpOptions)
+      }
+      mass_update(ids:number[], data:any, stringify: boolean = true): Observable<T> {
+        data.ids = ids;
+        return this.httpClient.put<T>(`${environment.api_url}/${this.url_model}/mass_update`, stringify?JSON.stringify(data):data, this.httpOptions)
       }
       delete(id:any){
         return this.httpClient.delete<T>(`${environment.api_url}/${this.url_model}/${id}`, this.httpOptions)

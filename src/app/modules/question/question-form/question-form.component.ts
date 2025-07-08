@@ -25,7 +25,7 @@ export class QuestionFormComponent extends BaseForm {
   questionForm: FormGroup;
   //  = questionFormGroup(this.fb);
 
-  @Input() action: FormAction | undefined;
+  @Input() action: FormAction | undefined = FormAction.CREATE;
   @Input() question: Question = newQuestion();
   @Input() clearOnSubmit: boolean = false;
   @Input() document: Document | null = null;
@@ -60,23 +60,23 @@ export class QuestionFormComponent extends BaseForm {
   }
 
   ngOnInit(): void {
-    
+
     // console.table(this.question);
     // this.loadFromUrl();
-    
+
     // console.log(this.question.text);
     this.form?.controls['document_id'].setValue(this.document?.id);
     // console.log(this.clearOnSubmit)
   }
-  ngOnChanges(){
+  ngOnChanges() {
     this.subjectService.all().subscribe({
       next: (res) => {
         this.subjects = res
-        
+
         this.subjectChanged({});
       }
     })
-    
+
   }
 
 
@@ -98,7 +98,7 @@ export class QuestionFormComponent extends BaseForm {
     switch (this.action) {
       case FormAction.CREATE:
         this.service?.store(this.form?.value, false).subscribe({
-          next: (res: any) => {this.success.emit() },
+          next: (res: any) => { this.success.emit() },
           error: (error: HttpErrorResponse) => { this.submitFormFailed(this.form, error) }
         })
         break;
@@ -123,4 +123,38 @@ export class QuestionFormComponent extends BaseForm {
       this.chapters = res;
     })
   }
+
+  tinyMceInit = {
+    height: '200px',
+    menubar: false, 
+    plugins: 'lists advlist link image table code help wordcount', 
+    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | image | table | tablemergecells', 
+    // images_upload_url: 'http://api.local.math/upload-image',
+    file_picker_types: 'image',
+    file_picker_callback: (callback: any, value: string, meta: any) => {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.setAttribute('accept', 'image/*');
+      input.onchange = () => {
+        const file = input.files?.[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            callback(reader.result as string, { alt: file.name });
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+      input.click();
+    }
+  };
+  // tinyMceConfig = {
+  //   selector: 'textarea',
+  //   plugins: 'image',
+  //   toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | image',
+  //   images_upload_url: '/upload-image',
+  //   automatic_uploads: true,
+    
+  // };
+
 }

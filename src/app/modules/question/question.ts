@@ -5,6 +5,8 @@ export interface Question {
     id ?: number,
     text ?: string,
     answer ?: string,
+    pattern ?: string,
+    pattern_data ?: any,
     subject_id ?: number,
     chapter_id ?: number,
     document_id ?: number,
@@ -18,6 +20,17 @@ export function newQuestion(): Question {
         text: '',
         // level: ''
     };
+}
+export function copyQuestion(question: Question): Question {
+    return {
+        text : question.text,
+        // answer: question.answer,
+        pattern: question.pattern,
+        pattern_data: question.pattern_data,
+        subject_id: question.subject_id,
+        chapter_id: question.chapter_id,
+        document_id: question.document_id
+    }
 }
 export function questionFormGroup(fb: FormBuilder): FormGroup {
     return new FormGroup({

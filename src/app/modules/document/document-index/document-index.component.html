@@ -6,17 +6,69 @@
 <a [routerLink]="'/documents/create'">New document</a> -->
 
 
-
 <div class="row">
+    <div class="col-md-12">
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Search </mat-panel-title>
+              <mat-panel-description>
+                <!-- Type your name and age -->
+                <!-- <mat-icon>account_circle</mat-icon> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <div class="row" [formGroup]="frmSearch">
+                <mat-form-field class="col-md-4">
+                    <mat-label>Subjects</mat-label>
+                    <mat-select multiple formControlName="subject_ids">
+                      @for (subject of subjects; track subject) {
+                        <mat-option [value]="subject.id">{{subject.name}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-md-4">
+                    <mat-label>Chapters</mat-label>
+                    <mat-select multiple>
+                        <mat-option>-- None --</mat-option>
+                        @for (subject of subjects; track subject) {
+                          <mat-optgroup [label]="subject.name">
+                            @for (chapter of subject.chapters; track chapter) {
+                              <mat-option [value]="chapter.id">{{chapter.name}}</mat-option>
+                            }
+                          </mat-optgroup>
+                        }
+                    </mat-select>
+                  </mat-form-field>
+                <mat-form-field class="col-md-4">
+                  <mat-label>Tag</mat-label>
+                  <input matInput type="text" formControlName="text" />
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col-md-12 filter text-right">
+                    <button mat-raised-button (click)="applySearch()"><mat-icon>search</mat-icon> Apply </button>
+                    <button mat-raised-button>Cancel</button>
+                </div>
+            </div>
+        
+          </mat-expansion-panel>
+    </div>
+</div>
+<div class="row mt-4 mb-2">
     <mat-card class="example-card col-md-3 p-1" *ngFor="let doc of documents">
         <mat-card-header>
             <mat-card-title><a [routerLink]="'/documents/'+doc.id">#{{ doc.id}}</a></mat-card-title>
             <mat-card-subtitle>{{ doc.filename ?? doc.id}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <img [src]="doc.file_url" alt="">
+            <img [src]="doc.file_url" alt="" *ngIf="doc.type!='pdf'" />
+            <img src="/assets/pdf-file-158878_1280.png" alt="" *ngIf="doc.type=='pdf'" />
             <!-- <p>This card indeterminates progress bar.</p> -->
             <p>Zadaci: {{doc.questions?.length}}</p>
+            <mat-chip-set aria-label="Fish selection">
+                <mat-chip *ngFor="let tag of doc?.tags">{{tag}}</mat-chip>
+              </mat-chip-set>
         </mat-card-content>
         <!-- <mat-card-actions>
             <button mat-button>LIKE</button>

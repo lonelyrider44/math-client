@@ -17,13 +17,18 @@ import {MatMenu, MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { FormAction } from '../base/form-action';
+import { MatTabsModule } from '@angular/material/tabs';
+import { SelectedQuestionsComponent } from './selected-questions/selected-questions.component';
+import { RandomizeQuestionComponent } from './randomize-question/randomize-question.component';
 
 
 @NgModule({
   declarations: [
     QuestionIndexComponent,
     QuestionFormComponent,
-    QuestionComponent
+    QuestionComponent,
+    SelectedQuestionsComponent,
+    RandomizeQuestionComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +44,7 @@ import { FormAction } from '../base/form-action';
     MatCheckboxModule,
     EditorModule,
     MatMenuModule,
+    MatTabsModule
   ],
   exports: [
     QuestionFormComponent,

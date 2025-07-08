@@ -1,1 +1,39 @@
-<p>selected-questions works!</p>
+<div class="container">
+
+    <div class="row" *ngIf="false">
+        <mat-form-field class="example-fullwidth col-md-4">
+            <mat-label>Predmet</mat-label>
+            <mat-select formControlName="subject_id" [(ngModel)]="subject_id" (selectionChange)="subjectChanged($event)">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let subject of subjects" [value]="subject.id">{{subject.name}}</mat-option>
+              <!-- <mat-option value="option1">Option 1</mat-option>
+                <mat-option value="option2">Option 2</mat-option>
+                <mat-option value="option3">Option 3</mat-option> -->
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-fullwidth col-md-4">
+            <mat-label>Oblast</mat-label>
+            <mat-select [(ngModel)]="chapter_id"  >
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let chapter of chapters" [value]="chapter.id">{{chapter.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="col-md-4">
+            <button mat-button (click)="updateSubjectChapter()">Basic</button>
+        </div>
+    </div>
+    <!-- <question *ngFor="let q of questions" [question]="q"></question> -->
+
+    <div class="row paper">
+        <div class="col-md-12">
+            <ol>
+                <li *ngFor="let q of questions" class="mt-2">
+                    <div [mathjax]="q?.text ??''"></div>
+                </li>
+            </ol>
+
+        </div>
+    </div>
+
+
+</div>

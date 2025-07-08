@@ -1,0 +1,61 @@
+
+<form [formGroup]="mathObjectForm" (ngSubmit)="submitForm()" novalidate>
+    <div class="row mt-3">
+        <mat-form-field class="example-fullwidth col-md-4">
+            <mat-label>Naziv</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field class="example-fullwidth col-md-4">
+            <mat-label>Expression</mat-label>
+            <input matInput formControlName="display_expr" />
+        </mat-form-field>
+        <mat-form-field class="example-fullwidth col-md-4">
+            <mat-label>LaTeX expression</mat-label>
+            <input matInput formControlName="display_expr_latex" />
+        </mat-form-field>
+    </div>
+    <div formArrayName="inputs">
+            <div class="form-group row" *ngFor="let input of inputs.controls let i = index" [formGroupName]="i">
+                <mat-form-field class="col-md-3" >
+                    <mat-label>Name</mat-label>
+                    <input formControlName="name" matInput />
+                    <!-- <mat-error *ngIf="input?.errors?.serverError">
+                        {{ input?.errors?.serverError }}
+                    </mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="col-md-3" >
+                    <mat-label>Expression</mat-label>
+                    <input formControlName="expr" matInput />
+                    <!-- <mat-error *ngIf="input?.errors?.serverError">
+                        {{ input?.errors?.serverError }}
+                    </mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="col-md-3" >
+                    <mat-label>LaTeX expression</mat-label>
+                    <input formControlName="latex_expr" matInput />
+                    <!-- <mat-error *ngIf="input?.errors?.serverError">
+                        {{ input?.errors?.serverError }}
+                    </mat-error> -->
+                </mat-form-field>
+                <!-- <mat-form-field class="col-md-11" *ngFor="let usluga of pruzene_usluge.controls; let i = index">
+        <mat-label>{{ i + 1 }}.</mat-label>
+        <input type="text" [formControlName]="i" matInput />
+      </mat-form-field> -->
+                <div class="col-md-1" style="text-align: right">
+                    <button mat-icon-button color="red" aria-label="Example icon button with a home icon" type="button" (click)="removeInput(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12 text-center">
+            <button mat-raised-button type="button" class="btn" (click)="goBack()">
+                Otkaži
+            </button>
+            <button mat-raised-button type="button" class="btn btn-danger" (click)="submitForm()">
+                Potvrdi
+            </button>
+        </div>
+    </div>
+</form>
