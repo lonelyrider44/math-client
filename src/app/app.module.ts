@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,11 @@ import { BreadcrumbComponent } from './modules/base/breadcrumb/breadcrumb.compon
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthModule } from './modules/auth/auth.module';
+import { ApiConfigService } from './modules/shared/api-config.service';
 
+export function initConfig(apiConfigService: ApiConfigService) {
+    return () => apiConfigService.load();
+}
 
 @NgModule({ declarations: [
         AppComponent,
@@ -44,5 +48,13 @@ import { AuthModule } from './modules/auth/auth.module';
         MatSlideToggleModule,
         BaseModule,
         BreadcrumbComponent,
-        AuthModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        AuthModule], 
+        providers: [
+            provideHttpClient(withInterceptorsFromDi()),{
+                provide: APP_INITIALIZER,
+                useFactory: initConfig,
+                multi: true,
+                deps: [ApiConfigService]
+            }
+        ]})
 export class AppModule { }

@@ -6,7 +6,7 @@
       <div [mathjax]="question?.pattern??''"></div>
     </div>
     <div class="col-md-5">
-      @for (p of pattern_data ?? []; track p) {
+      @for (p of pattern_data; track p) {
         <div class="row">
           <div class="col-md-3">
             <label for="">{{p.name}}</label>
